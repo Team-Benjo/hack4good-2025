@@ -1,5 +1,3 @@
-import './App.css'
-import Routing from './Routes'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -8,23 +6,16 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// Retrieve from firebase console
 const firebaseConfig = {
-  apiKey: "REDACTED",
-  authDomain: "REDACTED",
-  projectId: "REDACTED",
-  storageBucket: "REDACTED",
-  messagingSenderId: "REDACTED",
-  appId: "REDACTED",
-  measurementId: "REDACTED"
+  apiKey: "AIzaSyBP9dt_H_4a7rnswmyzbexQu_k2KYi9Nw0",
+  authDomain: "hack4good-2025.firebaseapp.com",
+  projectId: "hack4good-2025",
+  storageBucket: "hack4good-2025.firebasestorage.app",
+  messagingSenderId: "452129032865",
+  appId: "1:452129032865:web:3fdb2593b5d7b4e82bfee0",
+  measurementId: "G-02DJZYZWX2"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-function App() {
-  return <Routing/>
-}
-
-export default App
