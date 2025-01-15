@@ -14,10 +14,9 @@ const StaffLoginForm: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login clicked with:", { username, password });
     // Add authentication logic here
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, usernameToEmail(username, true), password)
+    signInWithEmailAndPassword(auth, usernameToEmail(username, false), password)
       .then((userCredential) => {
     // Signed in 
         const user = userCredential.user;

@@ -1,19 +1,39 @@
 // src/components/ResidentLoginForm.tsx
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import { usernameToEmail } from "../../utils/UsernameToEmail";
+import { useNavigate } from "react-router-dom";
+import { RESIDENT_RESET } from "../../Routes";
 
 const ResidentLoginForm: React.FC = () => {
+
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [err, seterr] = useState<string | undefined>(undefined)
+  
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Resident Login clicked with:", { username, password });
     // Add authentication logic here
-  };
+    const auth = getAuth();
+        signInWithEmailAndPassword(auth, usernameToEmail(username, true), password)
+          .then((userCredential) => {
+        // Signed in 
+            const user = userCredential.user;
+        // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            seterr(errorMessage)
+          });
+      };
+  
 
   const handleResetPassword = () => {
-    console.log("Reset password clicked for Resident");
     // Add password reset logic here
+    navigate(RESIDENT_RESET)
   };
 
   return (
@@ -53,6 +73,7 @@ const ResidentLoginForm: React.FC = () => {
           </button>
         </div>
       </form>
+      {err ? <h2>{err}</h2>: <></>} 
     </div>
   );
 };
