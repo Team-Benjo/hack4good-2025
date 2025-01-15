@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import LandingLoginPage from "./LandingLogin"
 import StaffLoginForm from './admin/auth/StaffLoginForm'
 import ResidentLoginForm from './resident/auth/ResidentLoginForm'
+import AdminHomePage from "./AdminHomePage";
+import AdminUserPage from "./admin/user/AdminUserPage";
+import RegisterUserPage from "./admin/user/RegisterUserPage";
 
 const Routing: React.FC = () => {
   return (
@@ -12,6 +15,9 @@ const Routing: React.FC = () => {
         <Route path="/" element={<LandingLoginPage />} />
         <Route path="/user/login" element={<ResidentLoginForm />} />
         <Route path="/admin/login" element={<StaffLoginForm />} />
+        <Route path="/admin/" element={<AdminHomePage />} />
+        <Route path="/admin/user/" element={<AdminUserPage />} />
+        <Route path="/admin/user/register" element={<RegisterUserPage />} />
       </Routes>
     </Router>
   );
