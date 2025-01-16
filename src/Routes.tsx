@@ -1,6 +1,6 @@
 // src/App.tsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingLoginPage from "./LandingLogin"
 import StaffLoginForm from './admin/auth/StaffLoginForm'
 import ResidentLoginForm from './resident/auth/ResidentLoginForm'
@@ -18,6 +18,9 @@ const Routing: React.FC = () => {
         <Route path="/admin/" element={<AdminHomePage />} />
         <Route path="/admin/user/" element={<AdminUserPage />} />
         <Route path="/admin/user/register" element={<RegisterUserPage />} />
+        <Route path="/admin/product" element={<RegisterUserPage />} />
+        <Route path="/admin/product/add" element={<RegisterUserPage />} />
+        <Route path="/admin/product/:id" element={<RegisterUserPage />} />
       </Routes>
     </Router>
   );
