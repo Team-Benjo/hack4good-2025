@@ -8,6 +8,7 @@ import AdminHomePage from "./AdminHomePage";
 import AdminUserPage from "./admin/user/AdminUserPage";
 import RegisterUserPage from "./admin/user/RegisterUserPage";
 import AdminViewProduct from "./admin/products/AdminViewProduct";
+import AdminEditProduct from "./admin/products/AdminEditProduct";
 
 const Routing: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const Routing: React.FC = () => {
         <Route path="/admin/user/register" element={<RegisterUserPage />} />
         <Route path="/admin/product" element={<AdminViewProduct />} />
         <Route path="/admin/product/add" element={<RegisterUserPage />} />
-        <Route path="/admin/product/:id" element={<RegisterUserPage />} />
+        <Route path="/admin/product/:id" element={<AdminEditProduct />} />
       </Routes>
     </Router>
   );

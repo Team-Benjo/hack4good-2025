@@ -22,7 +22,6 @@ const AdminViewProduct = () => {
       }
     };
 
-    console.log("inside useEffect");
     fetchProducts();
   }, []);
 
