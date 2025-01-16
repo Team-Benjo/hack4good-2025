@@ -1,20 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { User } from "../../types";
+import { User } from "../../utils/types";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { usernameToEmail } from "../../utils/UsernameToEmail";
 
 export default function RegisterUserPage() {
     const [name, setName] = useState("");
-    const [age, setAge] = useState(0);
+    const [dob, setDob] = useState("");
     const [image, setImage] = useState("");
 
     const navigate = useNavigate();
     
+    const getDate = (date: Date) => {
+        return date.toISOString().split('T')[0];
+    }
+
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     };
 
-    const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAge(parseInt(e.target.value));
+    const handleDobChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value);
+        const newDob = new Date(e.target.value);
+        setDob(getDate(newDob));
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,20 +43,31 @@ export default function RegisterUserPage() {
         const newUser: User = {
             id: Math.random().toString(36),
             name: name,
-            age: age,
+            email: usernameToEmail(name, true),
+            dob: dob,
             image: image
         };
-        console.log(newUser.name);
-        console.log(newUser.age);
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, newUser.email, "password").then(() => {
+            // Signed up 
+            alert("Resident added successfully");
+          })
+          .catch((error) => {
+            alert(error.message);
+            console.log(error.code);
+          });
     };
     return (
         <div>
             <h1>Register New Resident</h1>
             <form onSubmit={handleRegister}>
-                <input placeholder="Full Name" value={name} onChange={handleNameChange} />
+                <label>Name</label>
+                <input value={name} onChange={handleNameChange} />
                 <br />
-                <input type="number" placeholder="Age" value={age} onChange={handleAgeChange}/>
+                <label>Date of Birth</label>
+                <input type="date" value={dob} onChange={handleDobChange}/>
                 <br />
+                <label>Image of Resident</label>
                 <input type="file" name="image" value={image} onChange={handleImageChange}/>
                 <br />
                 <button type="submit">Register</button>
