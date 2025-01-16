@@ -3,11 +3,15 @@ import { useState } from "react";
 import { User } from "../../utils/types";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { usernameToEmail } from "../../utils/UsernameToEmail";
+import { db } from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function RegisterUserPage() {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [image, setImage] = useState("");
+
+  const usersCollection = collection(db, "users");
 
   const navigate = useNavigate();
 
@@ -38,6 +42,7 @@ export default function RegisterUserPage() {
     }
   };
 
+
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     const newUser: User = {
@@ -45,19 +50,32 @@ export default function RegisterUserPage() {
       name: name,
       email: usernameToEmail(name, true),
       dob: dob,
-      image: image,
+      image: image
     };
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, newUser.email, "password")
       .then(() => {
-        // Signed up
-        alert("Resident added successfully");
-      })
+      // Signed up 
+      alert("Resident added successfully");
+      addUsertoDB(newUser);
+      navigate("/admin/user/");
+    })
       .catch((error) => {
         alert(error.message);
         console.log(error.code);
       });
   };
+
+  const addUsertoDB = (newUser: User) => {
+    // Add user to database
+    console.log("Adding user to database");
+    addDoc(usersCollection, newUser).then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+    }).catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+  }
+  
   return (
     <div>
       <h1>Register New Resident</h1>
@@ -69,12 +87,7 @@ export default function RegisterUserPage() {
         <input type="date" value={dob} onChange={handleDobChange} />
         <br />
         <label>Image of Resident</label>
-        <input
-          type="file"
-          name="image"
-          value={image}
-          onChange={handleImageChange}
-        />
+        <input type="file" name="image" value={image} onChange={handleImageChange} />
         <br />
         <button type="submit">Register</button>
       </form>
@@ -84,5 +97,5 @@ export default function RegisterUserPage() {
         </button>
       </div>
     </div>
-  );
+  )
 }
