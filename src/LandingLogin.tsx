@@ -11,14 +11,12 @@ const LandingLoginPage: React.FC = () => {
   const handleResidentLogin = () => {
     console.log("Resident login clicked");
     navigate("/user/login");
-
   };
 
   const handleStaffLogin = () => {
     console.log("Staff login clicked");
     // Add logic to navigate or authenticate as a staff member
     navigate("/admin/login");
-
   };
 
   return (

@@ -1,4 +1,5 @@
 import { Stack, Text, Card, Button, HStack, Image } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   id: string;
@@ -8,7 +9,9 @@ interface ProductCardProps {
   image: string;
 }
 
-const ProductCard = ({ name, value, quantity, image }: ProductCardProps) => {
+const ProductCard = ({ id, name, value, quantity, image }: ProductCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <Card.Root overflow="hidden">
       <Image src={image} height={400} width={400}/>
@@ -22,7 +25,7 @@ const ProductCard = ({ name, value, quantity, image }: ProductCardProps) => {
         </HStack>
       </Card.Body>
       <Card.Footer gap="2">
-        <Button variant="ghost">Edit</Button>
+        <Button variant="ghost" onClick={() => {navigate(`${id}`)}}>Edit</Button>
       </Card.Footer>
     </Card.Root>
   );

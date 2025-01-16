@@ -11,6 +11,8 @@ import ResidentForgetPassword from "./resident/auth/ResidentForgetPassword";
 import StaffForgetPassword from "./admin/auth/StaffForgetPassword";
 import AdminViewProduct from "./admin/products/AdminViewProduct";
 import { ResidentLanding } from "./resident/ResidentLanding";
+import AdminEditProduct from "./admin/products/AdminEditProduct";
+import ViewUserPage from "./admin/user/ViewUserPage";
 
 export const LANDING_LOGIN = "/";
 export const RESIDENT_LOGIN = "/user/login";
@@ -21,6 +23,7 @@ export const ADMIN_RESET = "/admin/login/reset"
 export const ADMIN_LANDING = "/admin"
 export const ADMIN_USER_MANAGEMENT = "/admin/user";
 export const ADMIN_USER_REGISTRATION = "/admin/user/register";
+
 
 
 const Routing: React.FC = () => {
@@ -35,10 +38,11 @@ const Routing: React.FC = () => {
         <Route path={ADMIN_RESET} element={<StaffForgetPassword />} />
         <Route path="/admin/" element={<AdminHomePage />} />
         <Route path="/admin/user/" element={<AdminUserPage />} />
+        <Route path="/admin/user/:id" element={<ViewUserPage />} />
         <Route path="/admin/user/register" element={<RegisterUserPage />} />
         <Route path="/admin/product" element={<AdminViewProduct />} />
         <Route path="/admin/product/add" element={<RegisterUserPage />} />
-        <Route path="/admin/product/:id" element={<RegisterUserPage />} />
+        <Route path="/admin/product/:id" element={<AdminEditProduct />} />
       </Routes>
     </Router>
   );
