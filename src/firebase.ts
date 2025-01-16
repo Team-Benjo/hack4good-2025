@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -24,5 +23,3 @@ const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 
 export const db = getFirestore(app);
-=======
->>>>>>> Stashed changes

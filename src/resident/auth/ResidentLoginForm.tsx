@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { usernameToEmail } from "../../utils/UsernameToEmail";
 import { useNavigate } from "react-router-dom";
-import { RESIDENT_RESET } from "../../Routes";
+import { RESIDENT_LANDING, RESIDENT_RESET } from "../../Routes";
 
 const ResidentLoginForm: React.FC = () => {
 
@@ -21,6 +21,7 @@ const ResidentLoginForm: React.FC = () => {
           .then((userCredential) => {
         // Signed in 
             const user = userCredential.user;
+            navigate(RESIDENT_LANDING)
         // ...
           })
           .catch((error) => {

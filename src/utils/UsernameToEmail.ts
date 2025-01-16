@@ -1,4 +1,6 @@
+export const staffEmailDomain = "a.mwh.muhammadiyah.org.sg"
+export const residentEmailDomain = "u.mwh.muhammadiyah.org.sg"
+
 export function usernameToEmail(username: string, isResident: boolean): string {
-  const prefix = isResident ? "u" : "a";
-  return username + "@" + prefix + ".mwh.muhammadiyah.org.sg"
+  return username + "@" + (isResident ? residentEmailDomain : staffEmailDomain)
 }
