@@ -1,18 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { User } from "../../utils/types";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { firebaseConfig } from "../../firebase";
 import { usernameToEmail } from "../../utils/UsernameToEmail";
+import { doc, setDoc } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { db } from "../../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 export default function RegisterUserPage() {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [image, setImage] = useState("");
-
-  const usersCollection = collection(db, "users");
-
+  
   const navigate = useNavigate();
 
   const getDate = (date: Date) => {
@@ -30,37 +32,38 @@ export default function RegisterUserPage() {
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImage(reader.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
+    if (e.target.files && e.target.files[0]) {
+      console.log(e.target.files[0]);
     }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (e.target) {
+        setImage(e.target.result as string);
+      }
+    };
   };
-
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     const newUser: User = {
-      id: Math.random().toString(36),
+      id: uuidv4(),
       name: name,
       email: usernameToEmail(name, true),
       dob: dob,
       image: image
     };
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, newUser.email, "password")
+    
+    const tempApp = initializeApp(firebaseConfig, "temp");
+    const tempAuth = getAuth(tempApp);
+
+    createUserWithEmailAndPassword(tempAuth, newUser.email, "password")
       .then(() => {
-      // Signed up 
-      alert("Resident added successfully");
-      addUsertoDB(newUser);
-      navigate("/admin/user/");
-    })
-      .catch((error) => {
+        alert("Resident added successfully");
+        signOut(tempAuth);
+        addUsertoDB(newUser);
+      }).then(() => {
+        navigate("/admin/user/");
+      }).catch((error) => {
         alert(error.message);
         console.log(error.code);
       });
@@ -69,13 +72,14 @@ export default function RegisterUserPage() {
   const addUsertoDB = (newUser: User) => {
     // Add user to database
     console.log("Adding user to database");
-    addDoc(usersCollection, newUser).then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
-    }).catch((error) => {
-      console.error("Error adding document: ", error);
-    });
+    setDoc(doc(db, "users", newUser.id), newUser)
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef);
+      }).catch((error) => {
+        console.error("Error adding document: ", error);
+      });
   }
-  
+
   return (
     <div>
       <h1>Register New Resident</h1>
@@ -87,7 +91,8 @@ export default function RegisterUserPage() {
         <input type="date" value={dob} onChange={handleDobChange} />
         <br />
         <label>Image of Resident</label>
-        <input type="file" name="image" value={image} onChange={handleImageChange} />
+        <img src={image} />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
         <br />
         <button type="submit">Register</button>
       </form>

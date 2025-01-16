@@ -9,6 +9,7 @@ import AdminUserPage from "./admin/user/AdminUserPage";
 import RegisterUserPage from "./admin/user/RegisterUserPage";
 import AdminViewProduct from "./admin/products/AdminViewProduct";
 import AdminEditProduct from "./admin/products/AdminEditProduct";
+import ViewUserPage from "./admin/user/ViewUserPage";
 
 const Routing: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const Routing: React.FC = () => {
         <Route path="/admin/login" element={<StaffLoginForm />} />
         <Route path="/admin/" element={<AdminHomePage />} />
         <Route path="/admin/user/" element={<AdminUserPage />} />
+        <Route path="/admin/user/:id" element={<ViewUserPage />} />
         <Route path="/admin/user/register" element={<RegisterUserPage />} />
         <Route path="/admin/product" element={<AdminViewProduct />} />
         <Route path="/admin/product/add" element={<RegisterUserPage />} />
