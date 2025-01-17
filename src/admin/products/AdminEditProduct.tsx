@@ -63,10 +63,6 @@ const AdminEditProduct = () => {
       const db = getFirestore();
       const docRef = doc(db, "products", id);
       await updateDoc(docRef, formValues);
-      // toaster.create({
-      //   title: "Update successful",
-      //   description: `Edit of ${formValues.name} successful`
-      // })
       navigate('/admin/product')
     } catch (error) {
       console.error("Error updating product:", error);
@@ -75,7 +71,6 @@ const AdminEditProduct = () => {
 
   return (
     <>
-      {/* <Toaster /> */}
       {product ? (
         <Card.Root>
           <Fieldset.Root size="lg" maxW="md" padding={6}>

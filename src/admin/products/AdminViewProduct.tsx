@@ -3,9 +3,12 @@ import { db } from "@/firebase";
 import ProductCard from "@/components/ProductCard";
 import { collection, query, getDocs, DocumentData } from "firebase/firestore";
 import { Stack } from "@chakra-ui/react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const AdminViewProduct = () => {
   const [products, setProducts] = useState<DocumentData>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,8 +32,16 @@ const AdminViewProduct = () => {
     <div>
       <Stack>
         {products.map((product: DocumentData) => (
-          <ProductCard key={product.id} id={product.id} name={product.name} quantity={product.quantity} value={product.value} image={product.image}/>
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            quantity={product.quantity}
+            value={product.value}
+            image={product.image}
+          />
         ))}
+        <Button onClick={() => navigate('/admin/product/add')}>Add New Product</Button>
       </Stack>
     </div>
   );
