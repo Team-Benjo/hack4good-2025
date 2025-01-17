@@ -20,6 +20,7 @@ import UserProductsPage from "./admin/user/UserProductsPage";
 // import UserProductDetailsPage from "./admin/user/UserProductDetailsPage";
 import AdminNewProduct from "./admin/products/AdminNewProduct";
 import AdminViewOrder from "./admin/orders/AdminViewOrder";
+import AdminViewLogs from "./admin/AdminViewLogs";
 
 export const LANDING_LOGIN = "/";
 export const RESIDENT_LOGIN = "/user/login";
@@ -30,6 +31,7 @@ export const ADMIN_RESET = "/admin/login/reset";
 export const ADMIN_LANDING = "/admin";
 export const ADMIN_USER_MANAGEMENT = "/admin/user";
 export const ADMIN_USER_REGISTRATION = "/admin/user/register";
+export const ADMIN_LOGS = "/admin/log/"
 
 const Routing: React.FC = () => {
   return (
@@ -56,6 +58,7 @@ const Routing: React.FC = () => {
     <Route path="/user/product/" element={<UserProductsPage />} />
     {/* <Route path="/user/product/:productId" element={<UserProductDetailsPage />} /> */}
     <Route path="/admin/order" element={<AdminViewOrder />} />
+    <Route path={ADMIN_LOGS} element={<AdminViewLogs />} />
     </Routes>
     </Router>
   );
