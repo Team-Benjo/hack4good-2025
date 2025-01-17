@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { db } from "@/firebase";
 import ProductCard from "@/components/ProductCard";
 import { collection, query, getDocs, DocumentData } from "firebase/firestore";
-import { Stack } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 const AdminViewProduct = () => {
   const [products, setProducts] = useState<DocumentData>([]);
   const navigate = useNavigate();
+  // const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,6 +28,10 @@ const AdminViewProduct = () => {
 
     fetchProducts();
   }, []);
+
+  if (products.length == 0) {
+    return <Text>Loading...</Text>
+  }
 
   return (
     <div>
