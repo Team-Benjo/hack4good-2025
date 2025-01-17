@@ -21,6 +21,7 @@ const ResidentLoginForm: React.FC = () => {
           .then((userCredential) => {
         // Signed in 
             const user = userCredential.user;
+            localStorage.setItem("username", username);
             navigate(RESIDENT_LANDING)
         // ...
           })
