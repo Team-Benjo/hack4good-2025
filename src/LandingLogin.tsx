@@ -42,12 +42,6 @@ const LandingLoginPage: React.FC = () => {
           Login as Staff
         </button>
       </div>
-      <button 
-        className="button-style" 
-        onClick={() => navigate("/admin/")}
-      >
-        Admin Page
-      </button>
     </div>
   );
 };

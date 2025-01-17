@@ -1,32 +1,57 @@
-import React from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Navigate, Outlet, useNavigate } from "react-router-dom"
 import { isAdmin, isLoggedIn, isUser } from "./IsAdmin"
 import { ADMIN_LANDING, LANDING_LOGIN, RESIDENT_LANDING } from "../Routes"
 
-function Blocker(test: () => boolean) {
-  return ({children}: {children: React.ReactNode}) => {
-    const navigate = useNavigate()
+const admin = "ADMIN"
+const resident = "RESIDENT"
+const logout = "LOGOUT"
+const loading = "LOADING"
 
-    if (test()) {
-      return children
+function Blocker(user: String) {
+  return () => {
+    const navigate = useNavigate()
+    const [loginState, setLoginState] = useState<String>(loading)
+
+    useEffect(() => {
+      if (!isLoggedIn()) {
+        console.log("lg")
+        setLoginState(logout)
+      } else if (isAdmin()) {
+        console.log("ad")
+        setLoginState(admin)
+      } else if (isUser()) {
+        console.log("re")
+        setLoginState(resident)
+      } else {
+        console.log("fall")
+      }
+    }, [])
+
+    if (loginState == loading) {
+      return <>Loading</>
     }
+
+    if (loginState == user) {
+      return <Outlet />
+    }
+
     var message = "You do not have access to this page."
     var backRoute = "/"
-
-    if (!isLoggedIn()){
+    if (loginState == logout){
+      console.log("not log in")
       backRoute = LANDING_LOGIN
-    } else if (isAdmin()) {
+    } else if (loginState == admin) {
+      console.log("Admin")
       backRoute = ADMIN_LANDING
-    } else if (isUser()) {
+    } else if (loginState == resident) {
+      console.log("Resident")
       backRoute = RESIDENT_LANDING
     }
-    return <div>
-      <text>{message}</text>
-      <button onClick={() => navigate(backRoute)}>Go Back</button>
-    </div>
+    return <Navigate to={backRoute} />
   }
 }
 
-export const AdminAccess = Blocker(isAdmin)
-export const ResidentAccess = Blocker(isUser)
-export const LogoutAccess = Blocker(() => !isLoggedIn)
+export const AdminAccess = Blocker(admin)
+export const ResidentAccess = Blocker(resident)
+export const LogoutAccess = Blocker(logout)
