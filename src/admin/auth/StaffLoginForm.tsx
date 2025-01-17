@@ -3,6 +3,8 @@ import React, { useState } from "react";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { usernameToEmail } from "../../utils/UsernameToEmail";
+import { useNavigate } from "react-router-dom";
+import { ADMIN_RESET } from "@/Routes";
 
 // TODO: USE THE CHAKRA UI
 
@@ -11,6 +13,8 @@ const StaffLoginForm: React.FC = () => {
   const [password, setPassword] = useState<string>("");
 
   const [err, seterr] = useState<string | undefined>(undefined)
+
+  const navigate = useNavigate()
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +35,7 @@ const StaffLoginForm: React.FC = () => {
 
   const handleResetPassword = () => {
     console.log("Reset password clicked");
+    navigate(ADMIN_RESET)
     // Add password reset logic here
   };
 
@@ -68,7 +73,7 @@ const StaffLoginForm: React.FC = () => {
           <button type="submit" className="button-style">
             Login
           </button>
-          <button type="submit" className="button-style" onClick={handleResetPassword}>
+          <button className="button-style" onClick={handleResetPassword}>
             Reset Password
           </button>
         </div>

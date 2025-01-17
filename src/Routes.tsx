@@ -35,28 +35,32 @@ export const ADMIN_USER_REGISTRATION = "/admin/user/register";
 const Routing: React.FC = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LandingLoginPage />} />
-        <Route path="/user/login" element={<ResidentLoginForm />} />
-        <Route path={RESIDENT_RESET} element={<ResidentForgetPassword />} />
-        <Route path={RESIDENT_LANDING} element={<ResidentLanding />} />
-        <Route path="/admin/login" element={<StaffLoginForm />} />
-        <Route path={ADMIN_RESET} element={<StaffForgetPassword />} />
-        <Route path="/admin/" element={<AdminHomePage />} />
-        <Route path="/admin/user/" element={<AdminUserPage />} />
-        <Route path="/admin/user/:id" element={<ViewUserPage />} />
-        <Route path="/admin/user/register" element={<RegisterUserPage />} />
-        <Route path="/admin/product" element={<AdminViewProduct />} />
-        <Route path="/admin/product/add" element={<AdminNewProduct />} />
-        <Route path="/admin/product/:id" element={<AdminEditProduct />} />
-        <Route path="/user/" element={<UserPage />} />
-        {/* <Route path="/user/history/" element={<UserHistoryPage />} /> */}
-        {/* <Route path="/user/product/" element={<UserProductsPage />} />
-        <Route path="/user/product/:productId" element={<UserProductDetailsPage />} /> */}
-        <Route path="/admin/order" element={<AdminViewOrder />} />
-      </Routes>
-    </Router>
-  );
-};
+    <Routes>
 
-export default Routing;
+    <Route path="/" element={<LandingLoginPage />} />
+    <Route path={RESIDENT_LOGIN} element={<ResidentLoginForm />} />
+    <Route path={RESIDENT_RESET} element={<ResidentForgetPassword />} />
+    <Route path={ADMIN_LOGIN} element={<StaffLoginForm />} />
+
+    <Route path={RESIDENT_LANDING} element={<ResidentLanding />} />
+
+    <Route path={ADMIN_RESET} element={<StaffForgetPassword />} />
+    <Route path="/admin/" element={<AdminHomePage />} />
+    <Route path="/admin/user/" element={<AdminUserPage />} />
+    <Route path="/admin/user/:id" element={<ViewUserPage />} />
+    <Route path="/admin/user/register" element={<RegisterUserPage />} />
+    <Route path="/admin/product" element={<AdminViewProduct />} />
+    <Route path="/admin/product/add" element={<AdminNewProduct />} />
+    <Route path="/admin/product/:id" element={<AdminEditProduct />} />
+    <Route path="/user/" element={<UserPage />} />
+    {/* <Route path="/user/history/" element={<UserHistoryPage />} /> */}
+    {/* <Route path="/user/product/" element={<UserProductsPage />} />
+      <Route path="/user/product/:productId" element={<UserProductDetailsPage />} /> */}
+      <Route path="/admin/order" element={<AdminViewOrder />} />
+      </Routes>
+      </Router>
+    );
+  };
+  
+  export default Routing;
+  

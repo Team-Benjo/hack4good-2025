@@ -1,7 +1,6 @@
 // src/components/ResidentLoginForm.tsx
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { usernameToEmail } from "../../utils/UsernameToEmail";
 import { useNavigate } from "react-router-dom";
 import { RESIDENT_LANDING, RESIDENT_RESET } from "../../Routes";
 
@@ -9,7 +8,7 @@ const ResidentLoginForm: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [err, seterr] = useState<string | undefined>(undefined)
   
@@ -17,11 +16,11 @@ const ResidentLoginForm: React.FC = () => {
     e.preventDefault();
     // Add authentication logic here
     const auth = getAuth();
-        signInWithEmailAndPassword(auth, usernameToEmail(username, true), password)
+        signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
         // Signed in 
             const user = userCredential.user;
-            localStorage.setItem("username", username);
+            localStorage.setItem("username", email);
             navigate(RESIDENT_LANDING)
         // ...
           })
@@ -47,10 +46,10 @@ const ResidentLoginForm: React.FC = () => {
             Username:
           </label>
           <input
-            id="username"
+            id="email"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             style={{ width: "100%", padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }}
           />

@@ -31,7 +31,7 @@ const StaffForgetPassword: React.FC = () => {
         </div>
         <div>
           <button type="submit">
-            Login
+            Reset Password
           </button>
           <button type="button" onClick={() => navigate(LANDING_LOGIN)}>
             Back to Login

@@ -8,14 +8,12 @@ export const isAdmin = () => {
   return (usrEmail && re.test(usrEmail)) ? true : false
 }
 
-export const isUser = () => {
-  const auth = getAuth()
-  const re = /(?<=@)u.mwh.muhammadiyah.org.sg/
-  const usrEmail = auth.currentUser?.email
-  return (usrEmail && re.test(usrEmail)) ? true : false
-}
-
 export const isLoggedIn = () => {
   const auth = getAuth()
+  console.log(auth.currentUser)
   return auth.currentUser ? true : false
+}
+
+export const isUser = () => {
+  return !isAdmin && isLoggedIn()
 }
