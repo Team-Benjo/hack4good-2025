@@ -75,7 +75,7 @@ const UserProductsPage = () => {
 
   return (
     <div>
-      <Stack spacing={4}>
+      <Stack>
         {products.map((product: DocumentData) => (
           <Box key={product.id} borderWidth="1px" borderRadius="md" p={4}>
             <Image src={product.image} height={200} width={200} />
@@ -90,7 +90,7 @@ const UserProductsPage = () => {
               color="white"
               mt={2}
               _hover={{ bg: "green.700" }} // Darker green on hover
-              isDisabled={product.quantity <= 0} // Disable button if out of stock
+              disabled={product.quantity <= 0} // Disable button if out of stock
             >
               {product.quantity > 0 ? "Buy Item" : "Out of Stock"}
             </Button>

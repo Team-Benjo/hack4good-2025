@@ -22,13 +22,12 @@ const StaffLoginForm: React.FC = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, usernameToEmail(username, false), password)
       .then((userCredential) => {
+        userCredential;
         navigate("/admin")
     // Signed in 
-        const user = userCredential.user;
     // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         seterr(errorMessage)
       });

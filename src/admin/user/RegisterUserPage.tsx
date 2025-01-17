@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 export default function RegisterUserPage() {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
-  const [image, setImage] = useState("");
+  const [image, _] = useState("");
   
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ export default function RegisterUserPage() {
     setDob(getDate(newDob));
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  /* const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       console.log(e.target.files[0]);
     }
@@ -44,7 +44,7 @@ export default function RegisterUserPage() {
         setImage(e.target.result as string);
       }
     };
-  };
+  };*/
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();

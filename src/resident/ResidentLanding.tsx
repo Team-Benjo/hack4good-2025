@@ -11,9 +11,7 @@ export function ResidentLanding() {
       signOut(auth).then(() => {
         // Sign-out successful.
         navigate(LANDING_LOGIN)
-      }).catch((error) => {
-        // An error happened.
-      });
+      })
       
     }}>Logout</button>
   </div>

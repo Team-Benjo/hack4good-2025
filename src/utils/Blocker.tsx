@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { Navigate, Outlet, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Navigate, Outlet } from "react-router-dom"
 import { isAdmin, isLoggedIn, isUser } from "./IsAdmin"
 import { ADMIN_LANDING, LANDING_LOGIN, RESIDENT_LANDING } from "../Routes"
 
@@ -10,7 +10,6 @@ const loading = "LOADING"
 
 function Blocker(user: String) {
   return () => {
-    const navigate = useNavigate()
     const [loginState, setLoginState] = useState<String>(loading)
 
     useEffect(() => {
@@ -36,7 +35,6 @@ function Blocker(user: String) {
       return <Outlet />
     }
 
-    var message = "You do not have access to this page."
     var backRoute = "/"
     if (loginState == logout){
       console.log("not log in")
