@@ -38,11 +38,11 @@ const ResidentLoginForm: React.FC = () => {
   };
 
   return (
-    <div >
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto", textAlign: "center", border: "1px solid #ccc", borderRadius: "8px", backgroundColor: "#f9f9f9" }}>
       <form onSubmit={handleLogin}>
-        <h1>Resident Login</h1>
-        <div>
-          <label htmlFor="username">
+        <h1 style={{ marginBottom: "20px" }}>Resident Login</h1>
+        <div style={{ marginBottom: "15px" }}>
+          <label htmlFor="username" style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
             Username:
           </label>
           <input
@@ -51,10 +51,11 @@ const ResidentLoginForm: React.FC = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            style={{ width: "100%", padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }}
           />
         </div>
-        <div>
-          <label htmlFor="password">
+        <div style={{ marginBottom: "15px" }}>
+          <label htmlFor="password" style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
             Password:
           </label>
           <input
@@ -63,18 +64,19 @@ const ResidentLoginForm: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            style={{ width: "100%", padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }}
           />
         </div>
-        <div>
-          <button type="submit">
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
+          <button type="submit" className="button-style">
             Login
           </button>
-          <button type="button" onClick={handleResetPassword}>
+          <button type="button" className="button-style" onClick={handleResetPassword}>
             Reset Password
           </button>
         </div>
       </form>
-      {err ? <h2>{err}</h2>: <></>} 
+      {err ? <h2 style={{ color: "red" }}>{err}</h2> : null}
     </div>
   );
 };

@@ -108,11 +108,11 @@ export default function RegisterUserPage() {
           </Field>
         </div>
         <div style={{ paddingBottom: "1rem" }}>
-          <Button _hover={{bg: "gray.200"}} color={"black"} type="submit">Register</Button>
+          <Button className="button-style" type="submit">Register</Button>
         </div>
       </form>
       <div style={{ paddingBottom: "1rem" }}>
-        <Button _hover={{bg: "gray.200"}} color={"black"} onClick={() => navigate("/admin/user/")}>
+        <Button className="button-style" onClick={() => navigate("/admin/user/")}>
           Back to User Page
         </Button>
       </div>

@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.button-style {
+  background-color: #dddddd;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}

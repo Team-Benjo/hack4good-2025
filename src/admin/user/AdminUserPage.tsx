@@ -21,32 +21,35 @@ export default function AdminUserPage() {
   const navigate = useNavigate();
   
   return (
-    <div>
-      <h1>MWH Residents</h1>
+    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>MWH Residents</h1>
       <div>
-        <h2>Residents</h2>
-        <div>
+        <p style={{ fontSize: "1.5rem", marginBottom: "10px" }}>Residents</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {users.map((user) => (
-            <div key={user.id}>
-              <Avatar
-                name = {user.name}
-                src = {user.image}
-              />
-              <h3>{user.name}</h3>
-              <p>{user.dob}</p>
-              <Button _hover={{bg: "gray.200"}} color={'black'} onClick={() => navigate(`/admin/user/${user.name}`)} >
+            <div key={user.id} style={{ display: "flex", alignItems: "center", padding: "10px", border: "1px solid #ccc", borderRadius: "8px", backgroundColor: "#f9f9f9" }}>
+              <Avatar name={user.name} src={user.image} style={{ borderRadius: "50%", marginRight: "20px" }} />
+              <div style={{ flexGrow: 1 }}>
+                <h3 style={{ margin: 0, fontSize: "1.5rem" }}>{user.name}</h3>
+                <p style={{ margin: "5px 0", fontSize: "1rem" }}>{user.dob}</p>
+              </div>
+              <Button 
+                className="button-style"
+                  onClick={() => navigate(`/admin/user/${user.name}`)}>
                 View Resident
               </Button>
             </div>
           ))}
         </div>
-        <Button _hover={{bg: "gray.200"}} color={'black'} onClick={() => navigate("/admin/user/register")}>
-          Register a new resident
-        </Button>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
+          <Button className="button-style" onClick={() => navigate("/admin/user/register")}>
+            Register a new resident
+          </Button>
+          <Button className="button-style" onClick={() => navigate("/admin")}>
+            Back to Admin Page
+          </Button>
+        </div>
       </div>
-      <Button _hover={{bg: "gray.200"}} color={'black'} onClick={() => navigate("/admin")}>
-        Back to Admin Page
-      </Button>
     </div>
   );
 }

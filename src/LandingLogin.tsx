@@ -1,4 +1,4 @@
-  // src/components/LoginPage.tsx
+// src/components/LoginPage.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,17 +20,32 @@ const LandingLoginPage: React.FC = () => {
   };
 
   return (
-    <div >
-      <h1 >Welcome to Muhammadiyah Welfare Home Minimart</h1>
-      <div >
-        <button onClick={handleResidentLogin}>
+    <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
+      <h1 style={{ marginBottom: "20px" }}>Welcome to Muhammadiyah Welfare Home Minimart</h1>
+      <div style={{ marginBottom: "20px" }}>
+        <button 
+          className="button-style"
+          style={{ 
+            margin: "10px"
+          }} 
+          onClick={handleResidentLogin}
+        >
           Login as Resident
         </button>
-        <button onClick={handleStaffLogin}>
+        <button 
+          className="button-style"
+          style={{ 
+            margin: "10px"
+          }} 
+          onClick={handleStaffLogin}
+        >
           Login as Staff
         </button>
       </div>
-      <button onClick={() => navigate("/admin/")}>
+      <button 
+        className="button-style" 
+        onClick={() => navigate("/admin/")}
+      >
         Admin Page
       </button>
     </div>

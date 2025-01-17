@@ -4,6 +4,7 @@ import { getDocs, query, where, updateDoc, doc } from "firebase/firestore";
 import { db, usersCollection } from "../../firebase";
 import { User } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export default function ViewUserPage() {
   const navigate = useNavigate();
@@ -58,26 +59,43 @@ export default function ViewUserPage() {
   };
 
   return (
-    <div>
-      <h1>Viewing {id} Page</h1>
+    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
+      <h1 style={{ marginBottom: "20px" }}>Viewing {id} Page</h1>
       <div>
-        <h2>User Info</h2>
+        <p style={{ fontSize: "2rem", marginBottom: "20px" }}>User Info</p>
         {currUser ? (
           <div>
-            <h3>{currUser.name}</h3>
-            <button onClick={() => handleEditName(currUser.id)}>Edit Name</button>
-            <p>{currUser.dob}</p>
-            <button onClick={() => handleEditDob}>Edit DOB</button>
-            <img src={currUser.image} alt={currUser.name} />
-            <button onClick={() => handleEditImage}>Edit Image</button>
-            <br />
-            <button onClick={() => deleteUser}>Delete User</button>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
+              <img 
+                src={currUser.image || "https://cdn.iconscout.com/icon/free/png-256/free-anonymous-user-icon-download-in-svg-png-gif-file-formats--people-avatar-cryptocurrency-pack-business-icons-1133988.png"} 
+                style={{ width: "150px", height: "150px", borderRadius: "50%" }} 
+                alt="User Avatar"
+              />
+            </div>
+            <p style={{ fontSize: "1.8rem", marginBottom: "10px" }}>{currUser.name}</p>
+            <p style={{ fontSize: "1.8rem", marginBottom: "20px" }}>{currUser.dob}</p>
+            <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px" }}>
+              <Button className="button-style" onClick={() => handleEditName(currUser.id)}>
+                Edit Name
+              </Button>
+              <Button className="button-style" onClick={() => handleEditDob(currUser.id)}>
+                Edit DOB
+              </Button>
+              <Button className="button-style" onClick={() => handleEditImage(currUser.id)}>
+                Edit Image
+              </Button>
+            </div>
+            <Button className="button-style" style={{ backgroundColor: "#ff4122", color: "white", marginBottom: "20px" }} onClick={() => deleteUser()}>
+              Delete User
+            </Button>
           </div>
         ) : (
           <p>Loading...</p>
         )}
       </div>
-      <button onClick={() => navigate("/admin/user")}>Back to User Page</button>
+      <Button className="button-style" onClick={() => navigate("/admin/user")}>
+        Back to User Page
+      </Button>
     </div>
   );
 }

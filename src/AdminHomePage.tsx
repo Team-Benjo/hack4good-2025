@@ -17,14 +17,20 @@ export default function AdminHomePage() {
       });
   };
   return (
-    <div>
-      <h1>MWH Admin Page</h1>
-      <div>
-        <Button _hover={{bg: "gray.200"}} size={'md'} color={'black'} onClick={() => navigate("/admin/user/")}>
-          View Residents
-        </Button>
+    <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
+      <h1 style={{ marginBottom: "20px" }}>MWH Admin Page</h1>
+      <div style={{ marginBottom: "20px" }}>
+        <Button
+        className="button-style"
+        onClick={() => navigate("/admin/user/")}
+      >
+        View Residents
+      </Button>
       </div>
-      <Button _hover={{bg: "gray.200"}} color={'black'} onClick={handleLogout}>
+      <Button 
+        className="button-style"
+        onClick={handleLogout}
+      >
         Logout
       </Button>
     </div>
