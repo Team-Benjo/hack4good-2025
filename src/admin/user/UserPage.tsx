@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Box, Heading, Grid, GridItem, Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserPage: React.FC = () => {
   const [username, setUsername] = useState<string | null>("");
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-  
     const storedUsername = localStorage.getItem("username");
     setUsername(storedUsername);
   }, []);
@@ -40,11 +40,10 @@ const UserPage: React.FC = () => {
                 Purchase History
               </Heading>
               <Button
-                as={Link}
-                to="/user/history/"
                 color="black"
                 bg="gray.200"
                 _hover={{ bg: "gray.300" }}
+                onClick={() => navigate("/user/history/")} // Use navigate() for routing
               >
                 View
               </Button>
@@ -66,11 +65,10 @@ const UserPage: React.FC = () => {
                 Products
               </Heading>
               <Button
-                as={Link}
-                to="/user/product/"
                 color="black"
                 bg="gray.200"
                 _hover={{ bg: "gray.300" }}
+                onClick={() => navigate("/user/product/")} // Use navigate() for routing
               >
                 View
               </Button>
