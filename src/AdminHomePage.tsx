@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
+import { Button } from "./components/ui/button";
 
 export default function AdminHomePage() {
   const navigate = useNavigate();
@@ -19,13 +20,13 @@ export default function AdminHomePage() {
     <div>
       <h1>MWH Admin Page</h1>
       <div>
-        <button onClick={() => navigate("/admin/user/")}>
+        <Button _hover={{bg: "gray.200"}} size={'md'} color={'black'} onClick={() => navigate("/admin/user/")}>
           View Residents
-        </button>
+        </Button>
       </div>
-      <button onClick={handleLogout}>
+      <Button _hover={{bg: "gray.200"}} color={'black'} onClick={handleLogout}>
         Logout
-      </button>
+      </Button>
     </div>
   )
 }

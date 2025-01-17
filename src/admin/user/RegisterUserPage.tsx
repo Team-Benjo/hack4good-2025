@@ -9,6 +9,9 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { db } from "../../firebase";
 import { v4 as uuidv4 } from "uuid";
+import { Input } from "@chakra-ui/react";
+import { Field } from "@/components/ui/field";
+import { Button } from "@/components/ui/button";
 
 export default function RegisterUserPage() {
   const [name, setName] = useState("");
@@ -84,22 +87,34 @@ export default function RegisterUserPage() {
     <div>
       <h1>Register New Resident</h1>
       <form onSubmit={handleRegister}>
-        <label>Name</label>
-        <input value={name} onChange={handleNameChange} />
-        <br />
-        <label>Date of Birth</label>
-        <input type="date" value={dob} onChange={handleDobChange} />
-        <br />
-        <label>Image of Resident</label>
-        <img src={image} />
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        <br />
-        <button type="submit">Register</button>
+        <div style={{ paddingBottom: "1rem" }}>
+          <Field helperText="Enter the name of the resident">
+            <label style={{ fontSize: "1.1rem" }}>Name</label>
+            <Input value={name} onChange={handleNameChange} />
+          </Field>
+        </div>
+        <div style={{ paddingBottom: "1rem" }}>
+          <Field helperText="Enter the date of birth of the resident" style={{ fontSize: "1.5rem" }}>
+            <label style={{ fontSize: "1.1rem" }}>Date of Birth</label>
+            <input type="date" value={dob} onChange={handleDobChange} style={{fontSize: "1rem"}}/>
+          </Field>
+        </div>
+        <div style={{ paddingBottom: "1rem" }}>
+          <Field helperText="Upload an image of the resident">
+            <div style={{ display: "flex", justifyContent: "left", width: "100%" }}>
+              <input type="file" accept="image/*" onChange={handleImageChange} />
+            </div>
+            <img src={image} alt="Resident" style={{ alignContent: "center" }} />
+          </Field>
+        </div>
+        <div style={{ paddingBottom: "1rem" }}>
+          <Button _hover={{bg: "gray.200"}} color={"black"} type="submit">Register</Button>
+        </div>
       </form>
-      <div>
-        <button onClick={() => navigate("/admin/user/")}>
+      <div style={{ paddingBottom: "1rem" }}>
+        <Button _hover={{bg: "gray.200"}} color={"black"} onClick={() => navigate("/admin/user/")}>
           Back to User Page
-        </button>
+        </Button>
       </div>
     </div>
   )

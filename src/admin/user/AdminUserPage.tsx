@@ -4,6 +4,7 @@ import { User } from "../../utils/types";
 import { usersCollection } from "../../firebase";
 import { getDocs } from "firebase/firestore";
 import { Avatar } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 export default function AdminUserPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -27,23 +28,25 @@ export default function AdminUserPage() {
         <div>
           {users.map((user) => (
             <div key={user.id}>
-              <h3>{user.name}</h3>
-              <p>{user.dob}</p>
               <Avatar
                 name = {user.name}
                 src = {user.image}
               />
-              <button onClick={() => navigate(`/admin/user/${user.name}`)} >
+              <h3>{user.name}</h3>
+              <p>{user.dob}</p>
+              <Button _hover={{bg: "gray.200"}} color={'black'} onClick={() => navigate(`/admin/user/${user.name}`)} >
                 View Resident
-              </button>
+              </Button>
             </div>
           ))}
         </div>
-        <button onClick={() => navigate("/admin/user/register")}>
+        <Button _hover={{bg: "gray.200"}} color={'black'} onClick={() => navigate("/admin/user/register")}>
           Register a new resident
-        </button>
+        </Button>
       </div>
-      <button onClick={() => navigate("/admin")}>Back to Admin Page</button>
+      <Button _hover={{bg: "gray.200"}} color={'black'} onClick={() => navigate("/admin")}>
+        Back to Admin Page
+      </Button>
     </div>
   );
 }
