@@ -13,6 +13,7 @@ import AdminViewProduct from "./admin/products/AdminViewProduct";
 import { ResidentLanding } from "./resident/ResidentLanding";
 import AdminEditProduct from "./admin/products/AdminEditProduct";
 import ViewUserPage from "./admin/user/ViewUserPage";
+import { AdminAccess, LogoutAccess, ResidentAccess } from "./utils/Blocker";
 
 import UserPage from "./admin/user/UserPage";
 // import UserHistoryPage from "./admin/user/UserHistoryPage";
