@@ -37,9 +37,9 @@ const StaffLoginForm: React.FC = () => {
   return (
     <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto", textAlign: "center", border: "1px solid #ccc", borderRadius: "8px", backgroundColor: "#f9f9f9" }}>
       <form onSubmit={handleLogin}>
-        <h1 style={{ marginBottom: "20px" }}>Staff Login</h1>
+        <h1 style={{ marginBottom: "20px", color: "black" }}>Staff Login</h1>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="username" style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
+          <label htmlFor="username" style={{ display: "block", marginBottom: "5px", fontWeight: "bold", color: "black" }}>
             Username:
           </label>
           <input
@@ -52,7 +52,7 @@ const StaffLoginForm: React.FC = () => {
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password" style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
+          <label htmlFor="password" style={{ display: "block", marginBottom: "5px", fontWeight: "bold", color: "black" }}>
             Password:
           </label>
           <input

@@ -88,7 +88,7 @@ export default function RegisterUserPage() {
       <h1>Register New Resident</h1>
       <form onSubmit={handleRegister}>
         <div style={{ paddingBottom: "1rem" }}>
-          <Field helperText="Enter the name of the resident">
+          <Field helperText="Enter the name of the resident" >
             <label style={{ fontSize: "1.1rem" }}>Name</label>
             <Input value={name} onChange={handleNameChange} />
           </Field>
