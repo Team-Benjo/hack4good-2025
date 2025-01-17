@@ -27,11 +27,21 @@ export default function AdminUserPage() {
         <p style={{ fontSize: "1.5rem", marginBottom: "10px" }}>Residents</p>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {users.map((user) => (
-            <div key={user.id} style={{ display: "flex", alignItems: "center", padding: "10px", border: "1px solid #ccc", borderRadius: "8px", backgroundColor: "#f9f9f9" }}>
+            <div 
+              key={user.id} 
+              style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                padding: "10px",
+                border: "1px solid #ccc", 
+                borderRadius: "8px", 
+                backgroundColor: "#f9f9f9" 
+              }}
+              >
               <Avatar name={user.name} src={user.image} style={{ borderRadius: "50%", marginRight: "20px" }} />
               <div style={{ flexGrow: 1 }}>
-                <h3 style={{ margin: 0, fontSize: "1.5rem" }}>{user.name}</h3>
-                <p style={{ margin: "5px 0", fontSize: "1rem" }}>{user.dob}</p>
+                <h3 style={{ margin: 0, fontSize: "1.5rem", color: "black" }}>{user.name}</h3>
+                <p style={{ margin: "5px 0", fontSize: "1rem", color: "black" }}>{user.dob}</p>
               </div>
               <Button 
                 className="button-style"
