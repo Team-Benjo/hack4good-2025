@@ -8,6 +8,7 @@ import {
   NumberInputRoot,
 } from "@/components/ui/number-input";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 // import { toaster, Toaster } from "@/components/ui/toaster";
 
 interface Product {
@@ -23,7 +24,7 @@ const AdminNewProduct = () => {
 //   const [product, setProduct] = useState<Product | null>(null);
   const [formValues, setFormValues] = useState<Partial<Product>>({});
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (field: keyof Product, value: string | number) => {
     setFormValues((prev) => ({
@@ -42,6 +43,7 @@ const AdminNewProduct = () => {
         value: formValues.value,
         image: 'https://media.nedigital.sg/fairprice/90196727_XL1_20241204165400_ff1c41027fc0a42035a9328d621c2244.jpg'
       });
+      navigate("/admin/product");
     } catch (error) {
       console.error("Error updating product:", error);
     }
