@@ -6,9 +6,9 @@ This project is a web application designed to help with the redemption of items 
 ---
 
 ## Features  
-- **Secure Login**: User authentication with role-based access (e.g., Admin, Resident, Volunteer).  
-- **Inventory Management**: Track and manage products, services, or resources.  
-- **User Dashboards**: Tailored interfaces for residents, admins, and other stakeholders.  
+- **Secure Login**: User authentication with role-based access (e.g., Admin, Resident).  
+- **Inventory Management**: Track and manage products.  
+- **User Dashboards**: Tailored interfaces for residents and admins.
 
 ### Planned Features  
 - **Auction System**: Enable users to bid for items. 
