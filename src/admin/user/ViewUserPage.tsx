@@ -32,27 +32,25 @@ export default function ViewUserPage() {
   };
 
   const handleEditDob = async (id: string) => {
-    const newDob = prompt("Enter new Date:");
+    const newDob = prompt("Enter new Date: (YYYY-MM-DD)");
     if (newDob === null) return;
     const userRef = doc(db, "users", id);
     const updatedDob = { dob: newDob };
     await updateDoc(userRef, updatedDob);
-    if (currUser) {
-      navigate(`/admin/user/${currUser.name}`);
-    }
+    window.location.reload();
   };
 
-  const handleEditImage = async (id: string) => {
-    const newImage = prompt("Upload new image:");
-    if (newImage === null) return;
-    const userRef = doc(db, "users", id);
-    console.log(userRef);
-    const updatedImage = { image: newImage };
-    await updateDoc(userRef, updatedImage);
-    if (currUser) {
-      navigate(`/admin/user/${currUser.name}`);
-    }
-  };
+  // const handleEditImage = async (id: string) => {
+  //   const newImage = prompt("Upload new image:");
+  //   if (newImage === null) return;
+  //   const userRef = doc(db, "users", id);
+  //   console.log(userRef);
+  //   const updatedImage = { image: newImage };
+  //   await updateDoc(userRef, updatedImage);
+  //   if (currUser) {
+  //     navigate(`/admin/user/${currUser.name}`);
+  //   }
+  // };
   
   const deleteUser = () => {
   
@@ -81,13 +79,13 @@ export default function ViewUserPage() {
               <Button className="button-style" onClick={() => handleEditDob(currUser.id)}>
                 Edit DOB
               </Button>
-              <Button className="button-style" onClick={() => handleEditImage(currUser.id)}>
+              {/* <Button className="button-style" onClick={() => handleEditImage(currUser.id)}>
                 Edit Image
-              </Button>
+              </Button> */}
             </div>
-            <Button className="button-style" style={{ backgroundColor: "#ff4122", color: "white", marginBottom: "20px" }} onClick={() => deleteUser()}>
+            {/* <Button className="button-style" style={{ backgroundColor: "#ff4122", color: "white", marginBottom: "20px" }} onClick={() => deleteUser()}>
               Delete User
-            </Button>
+            </Button> */}
           </div>
         ) : (
           <p>Loading...</p>

@@ -16,9 +16,9 @@ import ViewUserPage from "./admin/user/ViewUserPage";
 import { AdminAccess, LogoutAccess, ResidentAccess } from "./utils/Blocker";
 
 import UserPage from "./admin/user/UserPage";
-import UserHistoryPage from "./admin/user/UserHistoryPage";
+// import UserHistoryPage from "./admin/user/UserHistoryPage";
 import UserProductsPage from "./admin/user/UserProductsPage";
-import UserProductDetailsPage from "./admin/user/UserProductDetailsPage";
+// import UserProductDetailsPage from "./admin/user/UserProductDetailsPage";
 import AdminNewProduct from "./admin/products/AdminNewProduct";
 import AdminViewOrder from "./admin/orders/AdminViewOrder";
 
@@ -53,9 +53,9 @@ const Routing: React.FC = () => {
     <Route path="/admin/product/add" element={<AdminNewProduct />} />
     <Route path="/admin/product/:id" element={<AdminEditProduct />} />
     <Route path="/user/" element={<UserPage />} />
-    <Route path="/user/history/" element={<UserHistoryPage />} /> 
+    {/* <Route path="/user/history/" element={<UserHistoryPage />} />  */}
     <Route path="/user/product/" element={<UserProductsPage />} />
-    <Route path="/user/product/:productId" element={<UserProductDetailsPage />} />
+    {/* <Route path="/user/product/:productId" element={<UserProductDetailsPage />} /> */}
     <Route path="/admin/order" element={<AdminViewOrder />} />
     </Routes>
     </Router>

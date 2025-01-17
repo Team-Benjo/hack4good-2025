@@ -99,14 +99,14 @@ export default function RegisterUserPage() {
             <input type="date" value={dob} onChange={handleDobChange} style={{fontSize: "1rem"}}/>
           </Field>
         </div>
-        <div style={{ paddingBottom: "1rem" }}>
+        {/* <div style={{ paddingBottom: "1rem" }}>
           <Field helperText="Upload an image of the resident">
             <div style={{ display: "flex", justifyContent: "left", width: "100%" }}>
               <input type="file" accept="image/*" onChange={handleImageChange} />
             </div>
             <img src={image} alt="Resident" style={{ alignContent: "center" }} />
           </Field>
-        </div>
+        </div> */}
         <div style={{ paddingBottom: "1rem" }}>
           <Button className="button-style" type="submit">Register</Button>
         </div>

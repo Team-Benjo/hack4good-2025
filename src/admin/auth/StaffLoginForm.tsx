@@ -22,6 +22,7 @@ const StaffLoginForm: React.FC = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, usernameToEmail(username, false), password)
       .then((userCredential) => {
+        navigate("/admin")
     // Signed in 
         const user = userCredential.user;
     // ...
