@@ -45,6 +45,14 @@ npm install
 npm run dev
 ```
 
+---
+
+## Admin Account Details
+
+Username: benjo
+
+Password: 123456
+
 ## Technologies Used
 * Frontend: React.js
 * Backend: Firebase
